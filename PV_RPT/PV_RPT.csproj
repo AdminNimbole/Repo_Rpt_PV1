@@ -95,6 +95,7 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Employee\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\nimbole.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
