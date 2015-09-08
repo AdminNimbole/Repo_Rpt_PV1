@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -48,6 +54,8 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -96,6 +104,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="EDMX\NIMBOLECtx.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NIMBOLECtx.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\NIMBOLECtx.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NIMBOLECtx.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\NIMBOLECtx.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NIMBOLECtx.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\TblCountry.cs">
+      <DependentUpon>NIMBOLECtx.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -103,8 +129,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Employee\Index.cshtml" />
+    <EntityDeploy Include="EDMX\NIMBOLECtx.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NIMBOLECtx.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EDMX\NIMBOLECtx.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NIMBOLECtx.edmx</DependentUpon>
+      <LastGenOutput>NIMBOLECtx.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EDMX\NIMBOLECtx.edmx.diagram">
+      <DependentUpon>NIMBOLECtx.edmx</DependentUpon>
+    </Content>
+    <Content Include="EDMX\NIMBOLECtx.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NIMBOLECtx.edmx</DependentUpon>
+      <LastGenOutput>NIMBOLECtx.cs</LastGenOutput>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -114,9 +159,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="EDMX\" />
     <Folder Include="logs\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
